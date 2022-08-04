@@ -1,5 +1,9 @@
 # Punished_Sounds
-Python script for setting up a pubsub subscription
+Using Punished Sounds!
+
+After following the install guide, just setup channel rewards with the EXACT same name as the sound you want to play, when a chatter redeems that reward the file will dynamically search for the relevant sound and play it.
+
+~ Note! : Occasionally Twitch might dc the subscription to channel events, it's happened to me a couple of times overnight - just stop the script with CTRL + D or C (or just close the cmd prompt down) and start it up again.
 
 Punished Sounds (Windows setup)
 
