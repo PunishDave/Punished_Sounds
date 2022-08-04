@@ -56,13 +56,13 @@ Additional useful packages that the script relies on
 
 ~ Note: For the next steps, some packages might already be on your system, if you see an error suggesting this is the case just move onto the next package
 
-3. Run pip install twitchAPI
-4. Run pip install pprint
-5. Run pip install UUID
-6. Run pip install playsound
-7. Run pip install os
-8. Run pip install random
-9. Run pip install fnmatch
+2. Run pip install twitchAPI
+3. Run pip install pprint
+4. Run pip install UUID
+5. Run pip install playsound
+6. Run pip install os
+7. Run pip install random
+8. Run pip install fnmatch
 
 - Installing Punished Sounds
 Basically downloading the script
