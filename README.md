@@ -8,6 +8,7 @@ After following the install guide, just setup channel rewards with the EXACT sam
 Punished Sounds (Windows setup)
 
 - Getting your client secret and ID
+
 Both are needed for authorising with Twitch
 
 1. Visit https://dev.twitch.tv/ and follow the signup process
@@ -20,6 +21,7 @@ Both are needed for authorising with Twitch
 8. Select new secret, copy it also
 
 - Getting your channel ID
+
 This is needed to point your event subscription to
 
 1. Visit https://www.streamweasels.com/tools/convert-twitch-username-to-user-id/
@@ -27,6 +29,7 @@ This is needed to point your event subscription to
 3. Copy your channel ID
 
 - Installing Python
+
 Script is written in Pyton, you'll need this to execute it
 
 1. Visit https://www.python.org/downloads/windows/
@@ -35,6 +38,7 @@ Script is written in Pyton, you'll need this to execute it
 4. Follow the install process (make sure to select 'add python.exe to PATH' when you are on the customise Python screen)
 
 - Installing PIP
+
 PIP is a Python package manager, you'll need this to install the additional files for using the script
 
 1. Open up the command prompt
@@ -50,6 +54,7 @@ PIP is a Python package manager, you'll need this to install the additional file
 11. Input the name as pip if it's not already filled in
 
 - Installing required packages
+
 Additional useful packages that the script relies on
 
 1. Open up the command prompt
@@ -65,6 +70,7 @@ Additional useful packages that the script relies on
 8. Run pip install fnmatch
 
 - Installing Punished Sounds
+
 Basically downloading the script
 
 1. Visit https://github.com/PunishDave/Punished_Sounds
