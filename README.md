@@ -45,6 +45,21 @@ PIP is a Python package manager, you'll need this to install the additional file
 10. Select 'Browse Directory' and ensure to navigate to where you installed PIP
 11. Input the name as pip if it's not already filled in
 
+- Installing required packages
+Additional useful packages that the script relies on
+
+1. Open up the command prompt
+
+~ Note: For the next steps, some packages might already be on your system, if you see an error suggesting this is the case just move onto the next package
+
+3. Run pip install twitchAPI
+4. Run pip install pprint
+5. Run pip install UUID
+6. Run pip install playsound
+7. Run pip install os
+8. Run pip install random
+9. Run pip install fnmatch
+
 - Installing Punished Sounds
 Basically downloading the script
 
