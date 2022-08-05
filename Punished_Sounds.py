@@ -6,7 +6,6 @@ from pprint import pprint
 from uuid import UUID
 from playsound import playsound
 import os
-import random
 import fnmatch
 
 def callback_redemptions(uuid: UUID, data: dict) -> None:
@@ -20,7 +19,8 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
             if fnmatch.fnmatch(name, redeemed):
                 d = os.path.join(root, name)
         playsound(d)
-        print("Played")
+        print("Redeem recieved and played")
+        break
 
 # setting up Authentication and getting your user id
 twitch = Twitch('Client ID goes here', 'Client Secret goes here')
