@@ -35,23 +35,21 @@ Script is written in Pyton, you'll need this to execute it
 1. Visit https://www.python.org/downloads/windows/
 2. Select latest Python 3 release
 3. Scroll to the bottom and select Windows installer
-4. Follow the install process (make sure to select 'add python.exe to PATH' when you are on the customise Python screen)
-
-- Installing PIP
-
-PIP is a Python package manager, you'll need this to install the additional files for using the script
-
-1. Open up the command prompt
-2. Run curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-3. To install PIP run python get-pip.py (note, you'll have to be in the same directory as the file you just curled, to check you are run dir)
-4. Check it's installed run pip help
-5. Open Control Panel
-6. Open 'System'
-7. Select 'Advanced System Settings'
-8. Select 'Environment Variables'
-9. Select 'New'
-10. Select 'Browse Directory' and ensure to navigate to where you installed PIP
-11. Input the name as pip if it's not already filled in
+4. Open Control Panel
+5. Open 'System'
+6. Select 'Advanced System Settings'
+7. Select 'Environment Variables'
+8. Select the system variable for PATH
+9. Select 'Edit'
+10. Select 'New'
+11. Select 'Edit'
+12. Select 'Browse' and navigate to the folder in which Python is installed
+~ NOTE! : If you are unsure where it installed, try typing in python after pressing the Windows key and opening the file location (might be a shortcut, so right click the shortcut and find the path that way)
+13. Select 'New' for a new System Environment Variable
+14. Input the name as PYTHONPATH
+15. Press browse and input the path where Python is installed
+~ NOTE! : Make sure when inputting the path you do not include the full path, you just need the directory
+16. Test python is installed via typing in the cmd prompt python --version
 
 - Installing required packages
 
@@ -59,28 +57,30 @@ Additional useful packages that the script relies on
 
 1. Open up the command prompt
 
-~ Note: For the next steps, some packages might already be on your system, if you see an error suggesting this is the case just move onto the next package
+~ NOTE! : For the next steps, some packages might already be on your system, if you see an error suggesting this is the case just move onto the next package
 
-2. Run pip install twitchAPI
-3. Run pip install pprint
-4. Run pip install UUID
-5. Run pip install playsound
-6. Run pip install os
-7. Run pip install random
-8. Run pip install fnmatch
+2. python -m pip install twitchAPI
+3. python -m pip install pprint
+4. python -m pip install UUID
+5. python -m pip install playsound==1.2.2
+6. python -m pip install os
+7. python -m pip install fnmatch
 
 - Installing Punished Sounds
 
 Basically downloading the script
 
-1. Visit https://github.com/PunishDave/Punished_Sounds
-2. Select the green 'Code' button
-3. Select 'Download ZIP'
-4. Extract the files to your sounds directory
-5. Open 'Punished_Sounds.py' after extraction with notepad or notepad++
-6. Edit line 26 and input your client ID and client secret
-7. Edit line 33 and input your channel ID
-8. Save
+1. Select the green 'Code' button
+2. Select 'Download ZIP'
+3. Extract the files to your sounds directory
+4. Open 'Punished_Sounds.py' after extraction with notepad or notepad++
+5. Look for a section of the code where is says path = "C:\\Path\\to\\where\\your\\sounds\\are" replace the path with the directory your sounds are
+~ NOTE! : crucially important to keep the \\ syntax here
+6. Look for a section of the code where is says twitch = Twitch('Client ID goes here', 'Client Secret goes here')
+7. Replace 'Client ID goes here' with your client ID keeping the single quotes
+8. Replace 'Client Secret goes here' with your client secret keeping the single quotes
+9. Save
+~ NOTE! : Windows has an annoying habbit of trying to make you save the file as a .txt or similar, make sure that it is still saved as a .py file
 
 - Running the program
 To actually start Punished Sounds
