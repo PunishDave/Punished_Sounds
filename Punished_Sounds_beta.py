@@ -13,35 +13,28 @@ import re
 def callback_redemptions(uuid: UUID, data: dict) -> None:
     #grabbing title
     redeemed = data["data"]["redemption"]["reward"]["title"]
+    #Taking off potential # and adding a wildcard for the search
+    filename = re.sub(r"[^a-zA-Z-_]","",redeemed)
+    filename += '*'
     #setting path
     path = "C:\\Path\\to\\where\\your\\sounds\\are"
-    if  re.search('[#]', redeemed):
-        justchars = re.sub(r"[^a-zA-Z-_]","",redeemed)
-        justchars += '*'
-        #setting up  a result array
-        result = []
-        #walk the dir to pull out the results
-        for root, dirs, files in os.walk(path):
-            for name in files:
-                if fnmatch.fnmatch(name, justchars):
-                    d = os.path.join(root, name)
-                    result.append(d)
-                    break
-        f = random.choice(result)
-        print("Played a random choice")
-        playsound(f)
+    #Setting an array of results
+    result = []
+    #Walking the dir for the results
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            if fnmatch.fnmatch(name, filename):
+                d = os.path.join(root, name)
+                result.append(d)
+    #If # is detected, do a random result
+    if re.search("[#]", redeemed):
+        choice = random.choice(result)
+        print(f'Random choice played: {choice}' '\n')
+        playsound(choice)
+    #If no # detected, just play the result since there should be one
     else:
-        redeemed += '*'
-        #setting up a new result array
-        results2 = []
-        #walk the dir to pull the only result
-        for root, dirs, files in os.walk(path):
-            for name in files:
-                if fnmatch.fnmatch(name, redeemed):
-                    p = os.path.join(root, name)
-                    playsound(p)
-                    break
-        print("Played")
+        print(f'Played: {d}' '\n')
+        playsound(d)
 
 # setting up Authentication and getting your user id
 twitch = Twitch('Client ID goes here', 'Client Secret goes here')
@@ -57,7 +50,7 @@ pubsub = PubSub(twitch)
 pubsub.start()
 # you can either start listening before or after you started pubsub.
 uuid = pubsub.listen_channel_points(channel_id, callback_redemptions)
-input('You can press ENTER in order to close script')
+input('You can press ENTER in order to close script \n \n')
 # you do not need to unlisten to topics before stopping but you can listen and unlisten at any moment you want
 pubsub.unlisten(uuid)
 pubsub.stop()
