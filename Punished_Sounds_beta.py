@@ -17,26 +17,25 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
     global oldsound2
     redeemed = data["data"]["redemption"]["reward"]["title"]
     #setting path
-    path = "C:\Users\dmvh1\Desktop\TwitchSounds"
-    cleaned = redeemed.replace('#', '')
-    cleaned += "*"
+    path = "C:\\Users\\dmvh1\\Desktop\\TwitchSounds"
+    redeemed += "*"
     #setting up a new result array
     results = []
     #walk the dir to pull the only result
     for root, dirs, files in os.walk(path):
         for name in files:
-            if fnmatch.fnmatch(name, cleaned):
+            if fnmatch.fnmatch(name, redeemed):
                  p = os.path.join(root, name)
                  results.append(p)
     g = random.choice(results)
-    if re.search("[#]", redeemed):
+    if len(results)>1:
         if len(results) > 2:
             while g == oldsound1 or g == oldsound2:
                  g = random.choice(results)
         else:
             while g == oldsound1:
                  g = random.choice(results)
+        oldsound2 = oldsound1
+        oldsound1 = g
     playsound(g)
     print(f"Played: {g}" "\n")
-    oldsound2 = oldsound1
-    oldsound1 = g
