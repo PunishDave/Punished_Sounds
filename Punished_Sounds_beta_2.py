@@ -59,6 +59,7 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
             played_sounds[redeemed].pop(0)
     playsound(g)
     print(f"Played: {g}" "\n")
+    #may clean up output later
 
 
 def add_value(sample_dict, key, newEntry):
