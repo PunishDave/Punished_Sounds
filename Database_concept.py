@@ -10,7 +10,7 @@ results = {}
 print(f"Searching for {redeemed}")
 db = TinyDB('db.json', encoding = "utf8")
 Punished_Sounds = db.table('FILES')
-path = "C:\\Users\\insat\\Documents\\dev\\db\\python\\twitchbot\\SoundClips"
+path = "/home/d-berry/github/db/python/twitchbot/SoundClips"
 
 #Build the  DB
 # for root, dirs, files in os.walk(path):
@@ -23,8 +23,28 @@ path = "C:\\Users\\insat\\Documents\\dev\\db\\python\\twitchbot\\SoundClips"
 
 #Search for the file
 File = Query()
-search = Punished_Sounds.search(File.Name.search(redeemed))
+#Searching for all files
+sound_search = Punished_Sounds.search(File.Name.search(redeemed))
+#Getting length
+range = len(sound_search)
+#Since lists start at index 0, need to add 0 and remove one from length
+rangecomprehension = [0]
+rangecomprehension.append(range - 1)
 
-print("\n")
-searchpop = search.pop()
-print(searchpop)
+if range == 1:
+    print("Not Random")
+    searchpop = sound_searchj.pop(0)
+    filepop = searchpop.get('File')
+    print(filepop)
+else:
+    print("Random")
+    #get playcount
+    for item in sound_search:
+        The_file = item.get("File")
+        The_playcount = item.get("Playcount")
+        sound_dict = {The_file: The_playcount}
+        minimum = sound_dict
+    print(minimum)
+    #pick the least
+
+    #print
