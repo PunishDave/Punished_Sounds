@@ -12,22 +12,20 @@ import re
 
 played_sounds = {}
 def callback_redemptions(uuid: UUID, data: dict) -> None:
-    global oldsound1
-    global oldsound2
-    global nextArray
     global played_sounds
     redeemed = data["data"]["redemption"]["reward"]["title"]
-    #setting path
-    path = "C:\\Where\\your\\sound\\files\\are\\stored" #keep the \\, its critical
     redeemed += "*"
+    #getting ist of files
+    cwd = os.getcwd()
+    sounds = os.listdir(cwd)
     #setting up a new result array
     results = []
     #walk the dir to pull the only result
-    for root, dirs, files in os.walk(path):
-        for name in files:
-            if fnmatch.fnmatch(name, redeemed):
-                 p = os.path.join(root, name)
-                 results.append(p)
+    or x in range(len(sounds)):
+        print(sounds[x])
+        if fnmatch.fnmatch(sounds[x], redeemed):
+            p=sounds[x]
+            results.append(p)
     g = random.choice(results)
     #if multiple options
     if len(results)>1:
@@ -59,7 +57,6 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
             played_sounds[redeemed].pop(0)
     playsound(g)
     print(f"Played: {g}" "\n")
-    #may clean up output later
 
 
 def add_value(sample_dict, key, newEntry):
@@ -68,30 +65,6 @@ def add_value(sample_dict, key, newEntry):
         sample_dict[key] = list()
     sample_dict[key].append(newEntry)
     return sample_dict
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
