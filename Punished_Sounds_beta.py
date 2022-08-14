@@ -22,7 +22,6 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
     results = []
     #walk the dir to pull the only result
     for x in range(len(sounds)):
-        print(sounds[x])
         if fnmatch.fnmatch(sounds[x], redeemed):
             p=sounds[x]
             results.append(p)
