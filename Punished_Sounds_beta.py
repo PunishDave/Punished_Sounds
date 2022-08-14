@@ -9,6 +9,7 @@ import os
 import random
 import fnmatch
 import re
+from decouple import config
 
 played_sounds = {}
 def callback_redemptions(uuid: UUID, data: dict) -> None:
@@ -67,39 +68,15 @@ def add_value(sample_dict, key, newEntry):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # setting up Authentication and getting your user id
-twitch = Twitch('secret1', 'secret2')
+twitch = Twitch(config('APP_ID'), config('SECRET'))
 twitch.authenticate_app([])
 # you can get your user auth token and user auth refresh token following the example in twitchAPI.oauth
 target_scope = [AuthScope.CHANNEL_READ_REDEMPTIONS]
 auth = UserAuthenticator(twitch, target_scope, force_verify=False)
 token, refresh_token = auth.authenticate()
 twitch.set_user_authentication(token, target_scope, refresh_token)
-channel_id = 'twitch ID'
+channel_id = config('CHANNEL_ID')
 # starting up PubSub
 pubsub = PubSub(twitch)
 pubsub.start()
