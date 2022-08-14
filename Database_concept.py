@@ -19,6 +19,10 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
     #get the working dir
     cwd = os.getcwd()
     sounds = os.listdir(cwd)
+    if 'config.env' in sounds:
+        sounds.remove('config.env')
+    if '.gitignore' in sounds:
+        sounds.remove('.gitignore')
     print("Checking database exists...")
     if len(Punished_Sounds) == 0:
         for x in sounds:
