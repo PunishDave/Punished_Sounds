@@ -99,7 +99,7 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
 # setting up Authentication and getting your user id
 twitch = Twitch(config('APP_ID'), config('SECRET'))
 twitch.authenticate_app([])
-target_scope = [AuthScope.CHANNEL_R0EAD_REDEMPTIONS]
+target_scope = [AuthScope.CHANNEL_READ_REDEMPTIONS]
 auth = UserAuthenticator(twitch, target_scope, force_verify=False)
 token, refresh_token = auth.authenticate()
 twitch.set_user_authentication(token, target_scope, refresh_token)
