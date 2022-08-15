@@ -65,14 +65,6 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
     # Grabbing title
     redeemed = data["data"]["redemption"]["reward"]["title"]
     redeemed += '*'
-    # Build the  DB
-    # db = TinyDB('db.json', encoding = "utf8")
-    # Punished_Sounds = db.table('FILES')
-    # File = Query()
-    # Get the working dir
-    # cwd = os.getcwd()
-    # sounds = os.listdir(cwd)
-
     # Searching for all files
     sound_search = Punished_Sounds.search(File.File.search(redeemed))
     # Getting length to check if random or not
@@ -125,12 +117,7 @@ channel_id = config('CHANNEL_ID')
 pubsub = PubSub(twitch)
 pubsub.start()
 uuid = pubsub.listen_channel_points(channel_id, callback_redemptions)
-# Below logic to stop script if input, removed for database_check
-#input('You can press ENTER in order to close script')
-#pubsub.unlisten(uuid)
-#pubsub.stop()
-
-# Detecting R key and doing refresh if pressed
+# Checking for input if database check is required
 value = input("Please type R to check the db:\n")
 v = value
 if value == 'R':
