@@ -135,4 +135,3 @@ value = input("Please type R to check the db:\n")
 v = value
 if value == 'R':
     database_check()
-    print("GOT IT")
