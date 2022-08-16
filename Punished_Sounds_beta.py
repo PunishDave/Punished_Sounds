@@ -2,69 +2,44 @@ from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
 from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.types import AuthScope
-from pprint import pprint
 from uuid import UUID
 from playsound import playsound
 import os
 import random
-import fnmatch
 import re
+import math
 from decouple import config
 
 played_sounds = {}
 def callback_redemptions(uuid: UUID, data: dict) -> None:
     global played_sounds
-    redeemed = data["data"]["redemption"]["reward"]["title"]
-    redeemed += "*"
-    #setting path
-    cwd = os.getcwd()
-    sounds = os.listdir(cwd)
-    #setting up a new result array
-    results = []
-    #walk the dir to pull the only result
-    for x in range(len(sounds)):
-        if fnmatch.fnmatch(sounds[x], redeemed):
-            p=sounds[x]
-            results.append(p)
+    redeemed = data["data"]["redemption"]["reward"]["title"] + "*"
+    #creating list of files
+    sounds = os.listdir()
+    #grabbing the files that start with the redeem name
+    results = [file for file in sounds if re.search(redeemed, file)]
     g = random.choice(results)
     #if multiple options
     if len(results)>1:
-        #create dictionary call
-        played_sounds = add_value(played_sounds, redeemed, None)
-        #remove eronius "None" from addition
-        played_sounds[redeemed].pop(len(played_sounds[redeemed])-1)
-        #if more than 2 option and both specific knockouts occupied, try until knockouts satisfied
-        if len(results) > 2 and len(played_sounds[redeemed]) > 1:
-            while g == played_sounds[redeemed][0] or g == played_sounds[redeemed][1]:
+        if redeemed in played_sounds:
+            #checking if the random sound has been played recently
+            while g in played_sounds[redeemed]:
                 g = random.choice(results)
-        else:
-            #if more than 2 option and only specific knockout occupied, try until knockout satisfied
-            if len(results) > 2 and len(played_sounds[redeemed]) == 1:
-                while g == played_sounds[redeemed][0]:
-                    g = random.choice(results)
-            else:
-                #if first entry of multiple options
-                if len(played_sounds[redeemed]) == 0:
-                    g = random.choice(results)
-                else:
-                    #if only 2 options
-                    while g == played_sounds[redeemed][0]:
-                        g = random.choice(results)
         #added played file to directory
         played_sounds = add_value(played_sounds, redeemed, g)
         #remove expired knockout
-        if len(played_sounds[redeemed])>2:
+        if len(played_sounds[redeemed])>(math.ceil(len(results)/3)):
             played_sounds[redeemed].pop(0)
-    playsound(g)
     print(f"Played: {g}" "\n")
+    playsound(g)
 
 
-def add_value(sample_dict, key, newEntry):
+def add_value(dict, key, newEntry):
 #add redeem name to dictionary and add sound to its list
-    if key not in sample_dict:
-        sample_dict[key] = list()
-    sample_dict[key].append(newEntry)
-    return sample_dict
+    if key not in dict:
+        dict[key] = list()
+    dict[key].append(newEntry)
+    return dict
 
 
 
