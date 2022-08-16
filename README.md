@@ -60,11 +60,9 @@ Additional useful packages that the script relies on
 ~ NOTE! : For the next steps, some packages might already be on your system, if you see an error suggesting this is the case just move onto the next package
 
 2. python -m pip install twitchAPI
-3. python -m pip install pprint
-4. python -m pip install UUID
+3. python -m pip install UUID
 5. python -m pip install playsound==1.2.2
 6. python -m pip install os
-7. python -m pip install fnmatch
 
 - Installing Punished Sounds
 
@@ -73,19 +71,17 @@ Basically downloading the script
 1. Select the green 'Code' button
 2. Select 'Download ZIP'
 3. Extract the files to your sounds directory
-4. Open 'Punished_Sounds.py' after extraction with notepad or notepad++
-5. Look for a section of the code where is says path = "C:\\Path\\to\\where\\your\\sounds\\are" replace the path with the directory your sounds are
-~ NOTE! : crucially important to keep the \\ syntax here
-6. Look for a section of the code where is says twitch = Twitch('Client ID goes here', 'Client Secret goes here')
-7. Replace 'Client ID goes here' with your client ID keeping the single quotes
-8. Replace 'Client Secret goes here' with your client secret keeping the single quotes
-9. Save
-~ NOTE! : Windows has an annoying habbit of trying to make you save the file as a .txt or similar, make sure that it is still saved as a .py file
+4. Open '.env' after extraction with notepad or notepad++
+5. Replace the relevant values gained from above
+6. Save
+~ NOTE! : Windows has an annoying habbit of trying to make you save the file as a .txt or similar, make sure that it is still saved as a .env file
 
 - Running the program
 To actually start Punished Sounds
 
-1. Open up cmd
-2. Change the directory to where your script/sounds are (via cd path\to\where\it\is)
-3. Type python PunishedSounds.py press enter
-4. If it's connected and works, you'll see "You can press ENTER in order to close script")
+1. Open up .bat file
+2. Change the directory to where your script/sounds are (i.e. "cd C:\Users\Username\Desktop\TwitchSounds")
+3. Change the 2nd line to the file name of whichever form of the bot you wish to use (i.e. Punished_Sounds.py, Database_concept.py)
+4. Place the batch file where its easy to get access (such as your desktop) and double-click to launch the bot.
+5. Close the command prompt window or press enter to end the script
+Note: You may close the web browser it opens and the bot will still work
