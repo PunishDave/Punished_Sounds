@@ -15,6 +15,11 @@ from decouple import config
 played_sounds = {}
 sounds = os.listdir()
 if '.env' not in sounds:
+    print("Your critical info is missing.")
+    print("The readme file will tell you how to collect that information.")
+    print("Enter your information in the prompt.")
+    print("Warning: If the programs closes after entry, something was entered incorrectly.")
+    print("If that happens, delete the .env file and try again.")
     with open('.env', 'w') as f:
         app_id =  input("App ID: ")
         secret = input("Secret: ")
@@ -23,6 +28,7 @@ if '.env' not in sounds:
         f.write(f'SECRET =  {secret}\n')
         f.write(f'CHANNEL_ID = {channel}\n')
         f.close()
+        os.system('cls')
 
 def callback_redemptions(uuid: UUID, data: dict) -> None:
     global played_sounds
