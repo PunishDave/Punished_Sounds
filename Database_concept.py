@@ -90,7 +90,10 @@ def callback_redemptions(uuid: UUID, data: dict) -> None:
         # Logic to get the least played from temp table
         all_playcount = Search_Results.all()
         playcount = {row['Playcount'] for row in all_playcount}
-        minplay = min(playcount)
+        try:
+            minplay = min(playcount)
+        except ValueError as e:
+            minplay = 1
         least_played = Search_Results.search(File.Playcount == minplay)
         # Setting random here, in case playcount matches multiple files
         randomfile = random.sample(least_played, 1)

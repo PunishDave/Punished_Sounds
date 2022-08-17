@@ -10,6 +10,7 @@ import random
 import re
 import math
 import pyautogui
+import time
 from decouple import config
 
 played_sounds = {}
@@ -74,6 +75,7 @@ channel_id = config('CHANNEL_ID')
 # starting up PubSub
 pubsub = PubSub(twitch)
 pubsub.start()
+time.sleep(3)
 pyautogui.hotkey('ctrl', 'w')
 # you can either start listening before or after you started pubsub.
 uuid = pubsub.listen_channel_points(channel_id, callback_redemptions)
